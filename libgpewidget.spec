@@ -1,31 +1,37 @@
-#
 Summary:	GPE widget library
+Summary(pl.UTF-8):	Biblioteka widgetów GPE
 Name:		libgpewidget
 Version:	0.115
 Release:	1
 License:	LGPL
-Group:		Development/Libraries
+Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
 # Source0-md5:	88d53855c41fa7713263e913871a5fcc
-URL:		http://gpe.linuxtogo.org
+URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel
 BuildRequires:	intltool
 BuildRequires:	libtool
-#BuildRequires:	python-devel
-#BuildRequires:	xulrunner-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 GPE widget library.
 
+%description -l pl.UTF-8
+Biblioteka widgetów GPE.
+
 %package devel
 Summary:	Header files for libgpewidget
+Summary(pl.UTF-8):	Pliki nagłówkowe libgpewidget
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libgpewidget.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe libgpewidget.
 
 %package static
 Summary:	Static libgpewidget library
@@ -69,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_bindir}/infoprint
-%attr(755,root,root) %{_libdir}/libgpewidget.so.1.0.0
+%attr(755,root,root) %{_libdir}/libgpewidget.so.*.*.*
 %dir %{_datadir}/libgpewidget
 %{_datadir}/libgpewidget/clock.png
 %{_datadir}/libgpewidget/clock24.png
@@ -77,10 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgpewidget.so
+%{_libdir}/libgpewidget.la
 %dir %{_includedir}/gpe
 %{_includedir}/gpe/*.h
-%{_libdir}/libgpewidget.la
-%{_libdir}/libgpewidget.so
 %{_pkgconfigdir}/libgpewidget.pc
 
 %files static
