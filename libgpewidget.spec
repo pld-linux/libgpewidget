@@ -8,11 +8,13 @@ Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
 # Source0-md5:	88d53855c41fa7713263e913871a5fcc
 URL:		http://gpe.linuxtogo.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-BuildRequires:	glib2-devel
-BuildRequires:	intltool
+BuildRequires:	glib2-devel >= 1:2.6
+BuildRequires:	gtk+2-devel >= 2:2.4
+BuildRequires:	intltool >= 0.23
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -26,6 +28,8 @@ Summary:	Header files for libgpewidget
 Summary(pl.UTF-8):	Pliki nagłówkowe libgpewidget
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.6
+Requires:	gtk+2-devel >= 2:2.4
 
 %description devel
 Header files for libgpewidget.
