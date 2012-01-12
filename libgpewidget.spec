@@ -1,12 +1,12 @@
 Summary:	GPE widget library
 Summary(pl.UTF-8):	Biblioteka widgetów GPE
 Name:		libgpewidget
-Version:	0.115
+Version:	0.117
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	88d53855c41fa7713263e913871a5fcc
+# Source0-md5:	b85a839264a35d0faf9a1a38c486e189
 Source1:	%{name}.pl.po
 URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf >= 2.59
@@ -60,6 +60,7 @@ sed -i -e 's/nl pt/nl pl pt/' configure.ac
 
 %build
 %{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -86,6 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog
 %attr(755,root,root) %{_bindir}/infoprint
 %attr(755,root,root) %{_libdir}/libgpewidget.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgpewidget.so.1
 %dir %{_datadir}/libgpewidget
 %{_datadir}/libgpewidget/clock.png
 %{_datadir}/libgpewidget/clock24.png
