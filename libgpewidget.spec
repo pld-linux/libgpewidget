@@ -1,23 +1,26 @@
 Summary:	GPE widget library
 Summary(pl.UTF-8):	Biblioteka widgetów GPE
 Name:		libgpewidget
-Version:	0.117
+Version:	0.118
 Release:	1
-License:	LGPL
+License:	LGPL v2+
 Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	b85a839264a35d0faf9a1a38c486e189
-Source1:	%{name}.pl.po
+# Source0-md5:	71d453d00aac718f32d0501372365794
 URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
+BuildRequires:	cairo-devel >= 0.4.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.6
+BuildRequires:	gtk-doc >= 1.2
 BuildRequires:	gtk+2-devel >= 2:2.4
 BuildRequires:	intltool >= 0.23
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	sed >= 4.0
+Requires:	cairo >= 0.4.0
+Requires:	glib2 >= 1:2.6
+Requires:	gtk+2 >= 2:2.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,6 +34,7 @@ Summary:	Header files for libgpewidget
 Summary(pl.UTF-8):	Pliki nagłówkowe libgpewidget
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	cairo-devel >= 0.4.0
 Requires:	glib2-devel >= 1:2.6
 Requires:	gtk+2-devel >= 2:2.4
 
@@ -52,11 +56,20 @@ Static libgpewidget library.
 %description static -l pl.UTF-8
 Statyczna biblioteka libgpewidget.
 
+%package apidocs
+Summary:	libgpewidget API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki libgpewidget
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+libgpewidget API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki libgpewidget.
+
 %prep
 %setup -q
-
-cp %{SOURCE1} po/pl.po
-sed -i -e 's/nl pt/nl pl pt/' configure.ac
 
 %build
 %{__glib_gettextize}
@@ -65,7 +78,8 @@ sed -i -e 's/nl pt/nl pl pt/' configure.ac
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -104,3 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgpewidget.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libgpewidget
