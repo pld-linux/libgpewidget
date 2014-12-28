@@ -11,7 +11,7 @@ URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 0.4.0
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.6
 BuildRequires:	gtk-doc >= 1.2
 BuildRequires:	gtk+2-devel >= 2:2.4
